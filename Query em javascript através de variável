@@ -1,0 +1,18 @@
+  let query = "INSERT IGNORE INTO NomeTabela (FILIAL, CODCLIENTE, CLIENTE, NOTA, PARCELA, VALOR, COBRANCA, VENCIMENTO, DIASVENCIDO, RCA, VENDEDOR, CODIGOSUPERVISOR, SUPERVISOR, CODIGOGERENTE, GERENTE) VALUES "//Aqui tem o nome das colunas que vão receber as informações
+  input.forEach((item, idx) => {
+    if(!item.more) {
+      let date = moment.unix(item.dthr).format('YYYY-MM-DD HH:mm:ss')
+      let chave = `${item.FILIAL}|${item.CODCLIENTE}|${item.NOTA}`
+      if(idx === input.length -1){
+        query += `('${item.FILIAL}', '${item.CODCLI}', '${item.CLIENTE}', '${item.NOTA}', '${item.PARC}', '${item.VALOR}', '${item.COBRANCA}', '${item.VENCIMENTO}', '${item.DIASVENC}', '${item.RCA}', '${item.VENDEDOR}', '${item.CODSUP}', '${item.SUPERVISOR}', '${item.CODGERENTE}', '${item.GERENTE}')`
+      }else{
+        query += `('${item.FILIAL}', '${item.CODCLI}', '${item.CLIENTE}', '${item.NOTA}', '${item.PARC}', '${item.VALOR}', '${item.COBRANCA}', '${item.VENCIMENTO}', '${item.DIASVENC}', '${item.RCA}', '${item.VENDEDOR}', '${item.CODSUP}', '${item.SUPERVISOR}', '${item.CODGERENTE}', '${item.GERENTE}'),`
+      }
+    }
+  })
+  
+  
+  return {
+    query
+  }
+}//onde tem as querys é o nome das variáveis que estou inserindo no banco de dados, com essa formatação esse script faz uma string enorme e nisso faz a inserção dos dados dentro do banco
